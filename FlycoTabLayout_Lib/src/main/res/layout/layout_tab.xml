@@ -6,6 +6,7 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
+    <!-- 如何定义每一个Tab? -->
     <TextView
         android:id="@+id/tv_tab_title"
         android:layout_width="wrap_content"
@@ -14,6 +15,7 @@
         android:gravity="center"
         android:singleLine="true"/>
 
+    <!-- 为单个元素指定: namespace -->
     <com.flyco.tablayout.widget.MsgView
         android:id="@+id/rtv_msg_tip"
         xmlns:mv="http://schemas.android.com/apk/res-auto"

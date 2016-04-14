@@ -1,27 +1,61 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.5.0'
-//        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
-//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
-allprojects {
-    repositories {
-        jcenter()
-//        maven {
-//            url "http://dl.bintray.com/h07000223/maven"
-//        }
+repositories {
+    jcenter()
+    mavenCentral()
+    maven {
+        url "http://maven.chunyu.mobi/content/groups/public/"
+        credentials {
+            username maven_user
+            password maven_password
+        }
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+//buildscript {
+//    repositories {
+//        jcenter()
+//    }
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:1.5.0'
+////        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+////        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+//        // NOTE: Do not place your application dependencies here; they belong
+//        // in the individual module build.gradle files
+//    }
+//}
+//
+//allprojects {
+//    repositories {
+//        jcenter()
+////        maven {
+////            url "http://dl.bintray.com/h07000223/maven"
+////        }
+//    }
+//}
+
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
+
+android {
+    defaultConfig {
+        targetSdkVersion 20
+        buildToolsVersion "20.0.0"
+        compileSdkVersion 20
+    }
 }
+

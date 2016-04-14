@@ -32,11 +32,14 @@ public class SlidingTabActivity extends AppCompatActivity implements OnTabSelect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sliding_tab);
 
+        // 1. 构建: Fragments
         for (String title : mTitles) {
             mFragments.add(SimpleCardFragment.getInstance(title));
         }
 
         View decorView = getWindow().getDecorView();
+
+        // 2. ViewPager的获取设设置
         ViewPager vp = ViewFindUtils.find(decorView, R.id.vp);
         vp.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
 
@@ -48,8 +51,10 @@ public class SlidingTabActivity extends AppCompatActivity implements OnTabSelect
         SlidingTabLayout tabLayout_3 = ViewFindUtils.find(decorView, R.id.tl_3);
         /** tab固定宽度 */
         SlidingTabLayout tabLayout_4 = ViewFindUtils.find(decorView, R.id.tl_4);
+
         /** indicator固定宽度 */
         SlidingTabLayout tabLayout_5 = ViewFindUtils.find(decorView, R.id.tl_5);
+
         /** indicator圆 */
         SlidingTabLayout tabLayout_6 = ViewFindUtils.find(decorView, R.id.tl_6);
         /** indicator矩形圆角 */
@@ -61,6 +66,7 @@ public class SlidingTabActivity extends AppCompatActivity implements OnTabSelect
         /** indicator圆角色块 */
         SlidingTabLayout tabLayout_10 = ViewFindUtils.find(decorView, R.id.tl_10);
 
+        // 3. 所有的Layout和ViewPager关联起来
         tabLayout_1.setViewPager(vp);
         tabLayout_2.setViewPager(vp);
         tabLayout_2.setOnTabSelectListener(this);
@@ -103,6 +109,7 @@ public class SlidingTabActivity extends AppCompatActivity implements OnTabSelect
     private class MyPagerAdapter extends FragmentPagerAdapter {
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
+
         }
 
         @Override
