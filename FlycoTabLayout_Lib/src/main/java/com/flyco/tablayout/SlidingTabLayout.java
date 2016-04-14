@@ -303,6 +303,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewPager.
         });
 
         /** 每一个Tab的布局参数 */
+        // 设置Tab的宽度啥的!
         LinearLayout.LayoutParams lp_tab = mTabSpaceEqual ?
                 new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT, 1.0f) :
                 new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
@@ -413,17 +414,22 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewPager.
     // 如何处理: Indicator呢?
     private void calcIndicatorRect() {
         View currentTabView = mTabsContainer.getChildAt(this.mCurrentTab);
+
+        // indicator
+        // TabView
         float left = currentTabView.getLeft();
         float right = currentTabView.getRight();
 
         //for mIndicatorWidthEqualTitle
+        // 如果没有设置: mIndicatorWidthEqualTitle, 则默认的宽度和TabView一样
         if (mIndicatorStyle == STYLE_NORMAL && mIndicatorWidthEqualTitle) {
             TextView tab_title = (TextView) currentTabView.findViewById(R.id.tv_tab_title);
             mTextPaint.setTextSize(mTextsize);
             float textWidth = mTextPaint.measureText(tab_title.getText().toString());
-            margin = (right - left - textWidth) / 2;
+            margin = (right - left - textWidth) / 2; // 和文本一样宽
         }
 
+        // 如果: mCurrentPositionOffset == 0, 则里面没有啥用
         if (this.mCurrentTab < mTabCount - 1) {
             View nextTabView = mTabsContainer.getChildAt(this.mCurrentTab + 1);
             float nextTabLeft = nextTabView.getLeft();
